@@ -34,7 +34,7 @@ var server = http.createServer(function(request, response){
     response.write('<!DOCTPYE>\n<html>' +
        '<head><link rel="stylesheet" href="style.css">' +
        '</head><body>' +
-       '<h1>你好</h1>' +
+       '<h1>土木6班_陈同学</h1>' +
        '<script src="/main.js"</script>' +
        '</body></html>')
     response.end()
