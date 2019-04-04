@@ -8,8 +8,20 @@
     <title>我的画板</title>
 </head>
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul,li {
+        list-style: none;
+    }
+
     #xxx {
         background: white;
+        position:fixed;
+        top: 0;
+        left: 0;
     }
 
     canvas {
@@ -18,6 +30,7 @@
 
     body {
         margin: 0;
+        overflow: hidden;
     }
 
     .actions {
@@ -25,11 +38,13 @@
         padding: 20px;
         top: 0;
         left: 0;
+        border-radius: 5px;
 
     }
 
     .actions svg {
         transition: all 0.4s;
+
 
     }
 
@@ -39,11 +54,66 @@
     }
 
     .icon {
-        width: 2em;
-        height: 2em;
+        margin: 0 5px;
+        width: 28px;
+        height: 28px;
         vertical-align: -0.15em;
         fill: currentColor;
         overflow: hidden;
+    }
+
+    .colors {
+        position: fixed;
+        top: 56px;
+        left: 23px;
+    }
+
+    .colors>li {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        margin: 10px 0;
+        border-radius: 100%;
+        box-shadow: 0 0 3px rgba(0,0,0,0.25);
+        transition: all 0.2s;
+    }
+
+    .colors>li.active {
+        box-shadow: 0 0 3px rgba(0,0,0,0.95);
+        transform: scale(1.2);
+   
+    }
+    .colors .red{
+        background: red;
+    }
+    .colors .green{
+        background: green;
+    }
+    .colors .blue{
+        background: blue;
+    }
+    .colors .black{
+        background: black;
+    }
+    .sizes {
+        position: fixed;
+        right: 20px;
+        top:60px;
+    }
+
+    .sizes>li{
+        height: 0;
+        width: 30px;
+        margin: 12px 0;
+    }
+    .sizes>li.thin {
+        border-top: 2px solid black;
+    }
+    .sizes>li.middle {
+        border-top: 4px solid black;
+    }
+    .sizes>li.thick {
+        border-top: 6px solid black;
     }
 </style>
 
@@ -56,10 +126,28 @@
         <svg id="eraser" class="icon">
             <use xlink:href="#icon-eraser-ps"></use>
         </svg>
+        <svg id="clear" class="icon">
+            <use xlink:href="#icon-delete"></use>
+        </svg>
+        <svg id="download" class="icon">
+            <use xlink:href="#icon-save"></use>
+        </svg>
     </div>
+    <ul class="colors">
+        <li id="black" class="black active"></li>
+        <li id="red" class="red"></li>
+        <li id="green" class="green"></li>
+        <li id="blue" class="blue"></li>
+    </ul>
+    <ul class="sizes">
+        <li id="thin" class="thin"></li>
+        <li id="middle" class="middle"></li>
+        <li id="thick" class="thick"></li>
+    </ul>
     <script>
         var yyy = document.getElementById('xxx');//声明
         var context = yyy.getContext('2d')//调用API,查看MDN文档
+        var lineWidth = 1
 
         autoSetCanvasSize(yyy)
 
@@ -138,14 +226,71 @@
                 using = false
             }
         }
+        clear.onclick = function(){
+            console.log('命令清除')
+            context.clearRect(0, 0, yyy.width, yyy.height);
+        }
+        thin.onclick = function(){
+            context.lineWidth = 1
+        }
+        middle.onclick = function(){
+            context.lineWidth = 2
+        }
+        thick.onclick = function(){
+            context.lineWidth = 3
+        }
 
         function drawLine(x1, y1, x2, y2) {
             context.beginPath()
             context.moveTo(x1, y1)
-            context.lineWidth = 1
             context.lineTo(x2, y2)
             context.stroke()
             context.closePath()
+        }
+
+        red.onclick = function(){
+            context.fillStyle = 'red'
+            context.strokeStyle = 'red'
+            red.classList.add('active')
+            green.classList.remove('active')
+            black.classList.remove('active')
+            blue.classList.remove('active')
+        }
+        green.onclick = function(){
+            context.fillStyle = 'green'
+            context.strokeStyle = 'green'
+            red.classList.remove('active')
+            green.classList.add('active')
+            black.classList.remove('active')
+            blue.classList.remove('active')
+        }
+        blue.onclick = function(){
+            context.fillStyle = 'blue'
+            context.strokeStyle = 'blue'
+            red.classList.remove('active')
+            green.classList.remove('active')
+            black.classList.remove('active')
+            blue.classList.add('active')
+        }
+        black.onclick = function(){
+            context.fillStyle = 'black'
+            context.strokeStyle = 'black'
+            red.classList.remove('active')
+            green.classList.remove('active')
+            blue.classList.remove('active')
+            black.classList.add('active')
+        }
+
+
+        download.onclick = function(){
+            console.log('xiazai')
+            var url = yyy.toDataURL("image/png")
+            var a = document.createElement('a')
+            document.body.appendChild(a)
+            a.href = url
+            a.download = 'my picture'
+            a.target = '_blank'
+            a.click()
         }
         /********************/
         var eraserEnabled = false
@@ -159,7 +304,6 @@
             brush.classList.add('active')
             eraser.classList.remove('active')
         }
-
 
         /********/
 
@@ -176,9 +320,7 @@
                 canvas.height = pageHeight;
             }
         }
-
     </script>
-    <script src="//at.alicdn.com/t/font_1124906_jh3ap0tfcdc.js"></script>
+    <script src="//at.alicdn.com/t/font_1124906_ewivzht03bc.js"></script>
 </body>
-
 </html>
