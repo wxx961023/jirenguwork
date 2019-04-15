@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+    <style>
+        .window {
+            border: 5px solid green;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .images {
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.5s; 
+        }
+        .chooses{
+            margin: 10px 0 0px 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window">
+        <div class="images" id="images">
+            <img src="./images/1.jpg">
+            <img src="./images/2.jpg">
+            <img src="./images/3.jpg">
+            <img src="./images/4.jpg">
+            <img src="./images/5.jpg">
+        </div>
+    </div>
+    <div class="chooses">
+        <button id="b1">选项1</button>
+        <button id="b2">选项2</button>
+        <button id="b3">选项3</button>
+        <button id="b4">选项4</button>
+        <button id="b5">选项5</button>
+    </div>
+    <script>
+        $(b1).on('click',function(){
+            $(images).css(
+                {
+                    transform: 'translateX(0)'
+                })
+        })
+        $(b2).on('click',function(){
+            $(images).css(
+                {
+                    transform: 'translateX(-200px)'
+                })
+        })
+        $('#b3').on('click',function(){
+            $(images).css(
+                {
+                    transform: 'translateX(-400px)'
+                })
+        })
+        $('#b4').on('click',function(){
+            $(images).css(
+                {
+                    transform: 'translateX(-600px)'
+                })
+        })
+        $('#b5').on('click',function(){
+            $(images).css(
+                {
+                    transform: 'translateX(-800px)'
+                })
+        })
+    </script>
+
+</body>
+
+</html>
