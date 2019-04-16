@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简化版轮播图</title>
+    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+    <style>
+        .window {
+            border: 5px solid green;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .images {
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.5s;
+        }
+
+        .chooses {
+            margin: 10px 0 0px 10px;
+
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window">
+        <div class="images" id="images">
+            <img src="http://p4.music.126.net/pDUMLhSwNtSD55_A4ke0nQ==/109951163895843293.jpg?param=200y200">
+            <img src="http://p1.music.126.net/V74TER1PyTbFH-8_i1QsJg==/109951163983137862.jpg?param=200y200">
+            <img src="http://p4.music.126.net/43cofQ60BBsf2lo8Gv_nvQ==/109951163992989308.jpg?param=200y200">
+            <img src="http://p4.music.126.net/bg7cDbjNO03gk22MnXBrZA==/109951163819830042.jpg?param=200y200">
+            <img src="http://p4.music.126.net/bywfztvSadeyzsbAOKm1Rw==/109951163563902099.jpg?param=200y200">
+        </div>
+    </div>
+    <div class="chooses">
+        <button id="b1">选项1</button>
+        <button id="b2">选项2</button>
+        <button id="b3">选项3</button>
+        <button id="b4">选项4</button>
+        <button id="b5">选项5</button>
+    </div>
+    <script>
+        //支持无线图轮播
+        var allButtons = $('.chooses>button')
+        for (let i = 0; i < allButtons.length; i++) {
+            $(allButtons[i]).on('click', function (x) {
+                var index = $(x.currentTarget).index()
+                var p = -index * 200
+                $(images).css({
+                    transform: 'translateX(' + p + 'px)'
+                })
+                n = index
+                allButtons.eq(n)
+                    .addClass('red')
+                    .siblings('.red').removeClass('red')
+            })
+        }
+        var n = 0
+        var size = allButtons.length
+        var setTimer = setInterval(() => {
+            allButtons.eq(n % size).trigger('click') // $(allButtons[n % 5]) === allButtons.eq(n%5)
+                .addClass('red')
+                .siblings('.red').removeClass('red')
+            n = n + 1
+        }, 1000)
+        //需求：我想鼠标放上去的时候停止，鼠标移开的时候重新开始
+        //监听鼠标事件,砸掉计时器,当鼠标移开
+        $('.window').on('mouseenter', function () {
+            window.clearInterval(setTimer)
+        })
+        $('.window').on('mouseleave', function () {
+            setTimer = setInterval(() => {
+                allButtons.eq(n % size).trigger('click')
+                    .addClass('red')
+                    .siblings('.red').removeClass('red')
+                n = n + 1
+            }, 1000)
+        })
+    </script>
+
+</body>
+
+</html>
