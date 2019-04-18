@@ -1,0 +1,113 @@
+*{margin: 0;padding: 0;}
+ul,li{
+    list-style: none;
+}
+
+body{
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(242, 242, 242)
+
+}
+.main{
+    text-align: center;
+    position: relative;
+    width: 920px;
+    margin-top: 12px;
+}
+h1 {
+    font-family: "Myriad Pro",Arial,Helvetica,sans-serif;
+    font-size: 36px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    color: rgb(68, 68, 68);
+    
+}
+h2{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: "Myriad Pro",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    top:15px;
+    text-transform:uppercase;
+}
+h2>a,P>a{
+    text-decoration: none;
+    color: rgb(1, 150, 227)
+}
+h2>a:hover,p>a:hover{
+    text-decoration: underline;
+    color: rgb(1, 150, 227)
+}
+
+.window{
+    width: 920px;
+    height: 400px;
+    overflow: hidden;
+
+    -moz-box-shadow:0 0 3px #AAAAAA;
+	-webkit-box-shadow:0 0 3px #AAAAAA;
+    box-shadow:0 0 3px #AAAAAA;
+    
+    	
+	-moz-border-radius-bottomleft:4px;
+	-webkit-border-bottom-left-radius:4px;
+	border-bottom-left-radius:4px;
+}
+.img{
+    display: flex;
+}
+
+ul.menu{
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+    background: -moz-linear-gradient(top, rgba(249,249,249,1) 0%, rgba(236,236,236,1) 100%);
+
+    -moz-box-shadow:0 0 3px #AAAAAA;
+	-webkit-box-shadow:0 0 3px #AAAAAA;
+    box-shadow:0 0 3px #AAAAAA;
+    
+    	
+	-moz-border-radius-bottomleft:4px;
+	-webkit-border-bottom-left-radius:4px;
+	border-bottom-left-radius:4px;
+}
+
+ul.menu>li{
+    width: 60px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(236, 236, 236);
+    cursor: pointer;
+
+}
+
+ul.menu li.fbar{
+    width: 2px;
+    display: block;
+	background:url(./apple-images/divider.png) no-repeat right;
+}
+li a{
+    width: 2px;
+    position: absolute;
+	display:block;
+	background:url(./apple-images/divider.png) no-repeat right;
+    height:100%;
+    margin-left: 31px;
+
+}
+p{
+    padding: 10px;
+    text-align: center;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
