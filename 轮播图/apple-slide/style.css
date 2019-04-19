@@ -92,6 +92,8 @@ ul.menu>li{
 
 ul.menu li.fbar{
     width: 2px;
+    left: 337px;
+    position: absolute;
     display: block;
 	background:url(./apple-images/divider.png) no-repeat right;
 }
@@ -102,7 +104,11 @@ li a{
 	background:url(./apple-images/divider.png) no-repeat right;
     height:100%;
     margin-left: 31px;
+}
 
+li.active,li.active.img{
+	/* The active state of the thumb */
+	background:url(https://demo.tutorialzine.com/2009/11/beautiful-apple-gallery-slideshow/img/active_bg.png) no-repeat;
 }
 p{
     padding: 10px;
@@ -110,4 +116,8 @@ p{
     display: block;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
+}
+
+#images{
+    transition: all 0.75s;
 }
